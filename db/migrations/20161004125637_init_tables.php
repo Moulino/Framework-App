@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateUsersTable extends AbstractMigration
+class InitTables extends AbstractMigration
 {
     /**
      * Change Method.
@@ -35,6 +35,18 @@ class CreateUsersTable extends AbstractMigration
             ->addColumn('roles', 'string', array('limit' => 100, 'null' => true))
             ->addColumn('errors', 'integer')
             ->addIndex(array('user_id'), array('unique' => true))
+            ->create();
+
+        $this->table('articles')
+            ->addColumn('label', 'string', array('limit' => 100))
+            ->addColumn('content_fr', 'text', array('null' => true))
+            ->addColumn('content_en', 'text', array('null' => true))
+            ->addColumn('content_nl', 'text', array('null' => true))
+            ->addColumn('content_de', 'text', array('null' => true))
+            ->addColumn('order', 'integer', array('null' => true))
+            ->addColumn('inverted', 'boolean', array('null' => true))
+            ->addColumn('parallax', 'boolean', array('null' => true))
+            ->addColumn('picture_file', 'string', array('limit' => 200, 'null' => true))
             ->create();
     }
 }
