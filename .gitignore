@@ -3,5 +3,6 @@
 /logs/*
 /mysql_db/
 /server_config/mail/esmtprc
+/server_config/logs/*
 /app/Resources/config/parameters.php
 composer.lock
