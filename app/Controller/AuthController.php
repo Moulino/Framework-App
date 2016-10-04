@@ -12,7 +12,7 @@ use Moulino\Framework\Http\Response;
 class AuthController extends BaseController
 {
 	public function loginAction($request) {
-		$id         = $request->getParameter('id', 'POST');
+		$id         = $request->getParameter('login', 'POST');
 		$password   = $request->getParameter('password', 'POST');
 		$remoteAddr = $_SERVER['REMOTE_ADDR'];
 

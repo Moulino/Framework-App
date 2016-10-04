@@ -21,7 +21,8 @@
         "Moulino/Framework": "*",
         "robmorgan/phinx": "master",
         "symfony/console": "~2.8|~3.0",
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "firebase/php-jwt": "^3.0"
     },
 
     "require-dev": {

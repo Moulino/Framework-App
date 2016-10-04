@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ lang() }}">
+<head>
+	<meta charset="utf8">
+	<title>Ballastières Werny</title>
+	{% block stylesheets %}
+		{% if mode == 'dev' %}
+			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+			<link rel="stylesheet" type="text/css" href="{{ asset('bower_components/materialize/dist/css/materialize.min.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('bower_components/angular-materialize/css/style.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('bower_components/material-design-icons-dist/material-icons.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('bower_components/flag-icon-css/css/flag-icon.min.css') }}">
+
+			
+		{% else %}
+			<link rel="stylesheet" type="text/css" href="/css/dist/styles.min.css">
+		{% endif %}
+	{% endblock stylesheets %}
+
+	<base href="{{ absolute_url('') }}" target="_blank">
+</head>
+<body ng-app="App">
+
+	
+
+	{% block scripts %}
+		{% if mode == 'dev' %}
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-route.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-animate.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-aria.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-cookies.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+			<script type="text/javascript" src="{{ asset('bower_components/Materialize/dist/js/materialize.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('bower_components/angular-materialize/src/angular-materialize.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('bower_components/ngvideo/dist/ng-video.min.js') }}"></script>
+
+		{% else %}
+			<script type="text/javascript" src="/js/dist/script.min.js"></script>
+		{% endif %}
+	{% endblock scripts %}

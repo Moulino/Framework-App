@@ -21,7 +21,7 @@ class AddArticle extends Command
 		parent::__construct();
 	}
 
-	protected function configure() {
+	protected function configure(){
 		$this->setName('app:article-add')
 			->setDescription('Add an article.')
 			->addArgument('label', InputArgument::REQUIRED, 'Title for the article')

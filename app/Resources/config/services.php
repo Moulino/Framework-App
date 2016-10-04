@@ -9,7 +9,7 @@ return array(
 
 	'article_handler' => array(
 		'class' => 'App\\Service\\ArticleHandler',
-		'arguments' => array("@article_model", "@translator")
+		'arguments' => array("@articles_model", "@translator")
 	),
 	
 	'password_generator' => array(

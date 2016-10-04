@@ -13,6 +13,8 @@ web:
         - ./:/var/www/html
         - ./server_config/php.ini:/usr/local/etc/php/php.ini
         - ./server_config/mail/esmtprc:/etc/esmtprc
+        - ./server_config/logs:/var/log/apache2
+        - ./server_config/apache2.conf:/etc/apache2/apache2.conf
     ports:
         - "8000:80"
     links:

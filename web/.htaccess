@@ -1,11 +1,17 @@
+# www/web/.htaccess
+
 <ifmodule mod_headers.c>
 	Header set X-Content-Type-Options nosniff
 	Header set X-Frame-Options DENY
-	Header set Content-Security-Policy "script-src 'self' https://www.google.com/maps"
+	Header set Content-Security-Policy "script-src 'self' https://cdn.rawgit.com https://cdnjs.cloudflare.com 'unsafe-inline'"
 	Header set X-XSS-Protection "1; mode=block"
 </ifmodule>
 
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php [L]
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule .? - [L]
+
+RewriteRule ^(fr|en|de|nl)(.+) index.php?lang=$1 [QSA,L]
+
+RewriteRule .? index.php [QSA,L]

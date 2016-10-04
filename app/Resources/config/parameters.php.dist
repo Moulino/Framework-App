@@ -2,22 +2,22 @@
 	
 return array(
 	'app' => array(
-		'mode'        => 'dev', // dev | prod
+		'mode'        => 'prod', // dev | prod
 		'date_format' => 'd/m/y H:i:s', // php format
-		'language'    => 'fr',
+		'locale'      => 'fr',
 		'charset'     => 'utf8'
 	),
 
 	'database' => array(
-		'host'     => 'db',
-		'name'     => '',
+		'host'     => '',
+		'name'     => 'db',
 		'user'     => '',
 		'password' => ''
 	),
 
 	'entities' => array(
-		'User' => array(
-			'table'      => 'user',
+		'Users' => array(
+			'table'      => 'users',
 			'validation' => array(
 				'user_id' => 'required|string|unique',
 				'name'    => 'required|string',
@@ -26,8 +26,22 @@ return array(
 			)
 		),
 
-		'Article' => array(
+		'Articles' => array(
 			'table'      => 'articles',
+			'fields' 	 => array(
+				'id'           => 'integer',
+				'label'        => 'string',
+				'class_name'   => 'string',
+				'content_fr'   => 'string',
+				'content_en'   => 'string',
+				'content_de'   => 'string',
+				'content_nl'   => 'string',
+				'inverted'     => 'boolean',
+				'order'        => 'integer',
+				'page_id'      => 'integer',
+				'parallax'     => 'boolean',
+				'picture_file' => 'string'
+			),
 			'validation' => array(
 				'label' => 'required|unique',
 			)
@@ -36,8 +50,18 @@ return array(
 
 	'security' => array(
 		'salt'     => 'H%d8k@OTacyYseK@',
-		'entity'   => 'User',
+		'entity'   => 'Users',
+		'authentication' => 'jwt', #['jwt', 'session' (default)]
+		'jwt_key' => 'W!^zdD/.Sj.WG7FH',
 		'firewall_rules' => array(
+			array(
+				'path' => '^/users',
+				'roles' => 'ADMIN'
+			),
+			array(
+				'path' => '^/admin/api',
+				'roles' => 'ADMIN'
+			),
 			array(
 				'path' => '^/',
 				'roles' => 'ANONYMOUS'
@@ -53,10 +77,6 @@ return array(
 			array(
 				'path' => '^/change-password',
 				'roles' => 'IS_AUTHENTICATED'
-			),
-			array(
-				'path' => '^/users',
-				'roles' => 'ADMIN'
 			)
 		)
 	),
@@ -65,26 +85,97 @@ return array(
 		array(
 			'path'     => '^/$',
 			'method'   => 'GET',
-			'callable' => 'Default:index',
+			'callable' => 'App:index'
 		),
 		array(
-			'path'     => '^/auth/login$',
-			'method'   => 'POST',
-			'callable' => 'Auth:login'
+			'path'         => '^/page/home$',
+			'method'       => 'GET',
+			'callable'     => 'App:home'
 		),
 		array(
-			'path'     => '^/auth/logout$',
-			'method'   => 'GET',
-			'callable' => 'Auth:logout',
+			'path'         => '^/contact$',
+			'method'       => 'GET',
+			'callable'     => 'App:contact'
 		),
 		array(
-			'path' => '^/change-password$',
+			'path' => '^/contact$',
 			'method' => 'POST',
+			'callable' => 'ApiRest:contactSubmission'
+		),
+		array(
+			'path'         => '^/page/:name$',
+			'method'       => 'GET',
+			'callable'     => 'App:page',
+			'requirements' => array(
+				'page'   => '\w+'
+			)
+		),
+		array(
+			'path'     => '^/admin\/?$',
+			'method'   => 'GET',
+			'callable' => 'Admin:index'
+		),
+		array(
+			'path'     => '^/admin/login$',
+			'method'   => 'POST',
+			'callable' => 'ApiRest:login'
+		),
+		array(
+			'path'     => '^/admin/upload$',
+			'method'   => 'POST',
+			'callable' => 'Admin:upload'
+		),
+		array(
+			'path'         => '^/admin/api/:model$',
+			'method'       => 'GET',
+			'callable'     => 'ApiRest:list',
+			'requirements' => array(
+				'model' => '\w+'
+			)
+		),
+		array(
+			'path'         => '^/admin/api/:model/:id$',
+			'method'       => 'GET',
+			'callable'     => 'ApiRest:get',
+			'requirements' => array(
+				'model' => '\w+',
+				'id'    => '\d+'
+			)
+		),
+		array(
+			'path'         => '^/admin/api/:model$',
+			'method'       => 'POST',
+			'callable'     => 'ApiRest:add',
+			'requirements' => array(
+				'model' => '\w+'
+			)
+		),
+		array(
+			'path'         => '^/admin/api/:model/:id$',
+			'method'       => 'PUT',
+			'callable'     => 'ApiRest:update',
+			'requirements' => array(
+				'model' => '\w+',
+				'id'    => '\d+'
+			)
+		),
+		array(
+			'path'         => '^/admin/api/:model/:id$',
+			'method'       => 'DELETE',
+			'callable'     => 'ApiRest:remove',
+			'requirements' => array(
+				'model' => '\w+',
+				'id'    => '\d+'
+			)
+		),
+		array(
+			'path'     => '^/change-password$',
+			'method'   => 'POST',
 			'callable' => 'User:changePassword'
 		),
 		array(
-			'path' => '^/users/regenerate-password$',
-			'method' => 'POST',
+			'path'     => '^/users/regenerate-password$',
+			'method'   => 'POST',
 			'callable' => 'User:regeneratePassword'
 		),
 		array(
@@ -132,5 +223,13 @@ return array(
 		'sender' => '',
 		'receiver' => '',
 		'subject' => ''
+	),
+	'view' => array(
+		'twig_extensions' => array(
+			'article_loader' => array(
+				'class' => 'App\\Twig\\Extension\\ArticleLoaderExtension',
+				'arguments' => array('@article_handler', '%app.locale%')
+			)
+		)
 	)
 );

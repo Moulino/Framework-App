@@ -1,0 +1,28 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-admin": "1.0.0-alpha4",
+    "ng-admin.jwt-auth": "^0.3.0",
+    "font-awesome": "^4.6.3",
+    "Swiper": "swiper#^3.3.1",
+    "angular-materialize": "^0.1.9",
+    "Materialize": "materialize#^0.97.6",
+    "angular-route": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-aria": "^1.5.7",
+    "angular-cookies": "^1.5.7",
+    "material-design-icons-dist": "^1.1.0",
+    "flag-icon-css": "^2.3.1"
+  },
+  "resolutions": {
+    "angular": "1.5.7"
+  }
+}

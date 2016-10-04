@@ -9,7 +9,6 @@ $messageTxt .= "Le mot de passe ci-dessus a été généré de manière aléatoi
 $messageTxt .= "Nous vous invitons fortement à le modifier, une fois connecté sur le site internet.\n\n";
 $messageTxt .= "Bonne navigation !\n\n";
 $messageTxt .= "Cordialement.\n\n";
-$messageTxt .= "L'équipe F.C.H. Sablières Capoulade.\n";
 
 
 $messageHtml = "<html><body>";
@@ -26,7 +25,6 @@ $messageHtml .= "<p>Le mot de passe ci-dessus a été généré de manière alé
 $messageHtml .= "<p>Nous vous invitons fortement à le modifier, une fois connecté sur le site internet.</p>";
 $messageHtml .= "<p>Bonne navigation</p>";
 $messageHtml .= "<p>Cordialement.</p>";
-$messageHtml .= "<p>L'équipe F.C.H. Sablières Capoulade.</p>";
 
 $message = "\n--$boundary\n";
 $message .= "Content-Type: text/plain; charset=UTF-8\n";
