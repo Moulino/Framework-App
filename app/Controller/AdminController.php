@@ -42,6 +42,26 @@ class AdminController extends BaseController
 			return strtolower($matches[1]);
 		}
 	}
+
+	public function loginAction($request) {
+		$id         = $request->getParameter('login', 'POST');
+		$password   = $request->getParameter('password', 'POST');
+		$remoteAddr = $_SERVER['REMOTE_ADDR'];
+
+		$auth = $this->container->get('authenticator');
+		$auth->login($remoteAddr, $id, $password);
+
+		return new Response(json_encode(''));
+	}
+
+	public function logoutAction($request) {
+		$auth = $this->container->get('authenticator');
+		$auth->logout();
+
+		$response = new Response("", 301);
+		$response->redirect('/');
+		return $response;
+	}
 }
 
 ?>
