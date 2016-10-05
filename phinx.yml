@@ -16,8 +16,8 @@ environments:
 
     development:
         adapter: mysql
-        host: 172.17.0.2
-        name: db
+        host: db
+        name: site-fch
         user: root
         pass: 'root'
         port: 3306
