@@ -9,10 +9,10 @@ return array(
 	),
 
 	'database' => array(
-		'host'     => '',
-		'name'     => 'db',
-		'user'     => '',
-		'password' => ''
+		'host'     => 'db',
+		'name'     => 'site-fch',
+		'user'     => 'root',
+		'password' => 'root'
 	),
 
 	'entities' => array(
