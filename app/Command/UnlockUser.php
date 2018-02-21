@@ -28,6 +28,11 @@ class UnlockUser extends Command
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$user_id = $input->getArgument('user_id');
 		$this->model->set(['user_id' => $user_id], ['errors' => 0]);
-		$output->writeln("<info>The user account has been unlocked.</info>");
+		$rowAffected = $output->writeln("<info>The user account has been unlocked.</info>");
+		if(!$rowAffected) {
+			$output->writeln("<error>The user '$user_id' has not been found.</error>");
+		} else {
+			$output->writeln("<info>The user account '$user_id' has been unlocked.</info>");
+		}
 	}
 }
