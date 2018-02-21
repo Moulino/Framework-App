@@ -30,11 +30,11 @@ class ListUser extends Command
 		$list = [];
 
 		foreach ($users as $user) {
-			$list[] = [$user['user_id'], $user['name'], $user['mail'], $user['roles']];
+			$list[] = [$user['user_id'], $user['name'], $user['mail'], $user['roles'], $user['errors']];
 		}
 
 		$table = new Table($output);
-		$table->setHeaders(['Identifiant', 'Name', 'Mail', 'Roles'])
+		$table->setHeaders(['Identifiant', 'Name', 'Mail', 'Roles', 'Errors'])
 				->setRows($list);
 		$table->render();
 	}

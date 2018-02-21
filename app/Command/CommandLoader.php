@@ -27,6 +27,9 @@ class CommandLoader
 				$this->container->get('users_model'),
 				$this->container->get('password_encoder')
 			),
+			new UnlockUser(
+				$this->container->get('users_model')
+			),
 			new AddArticle(
 				$this->container->get('articles_model'),
 				$this->container->get('validator')
