@@ -27,12 +27,7 @@ class UnlockUser extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$user_id = $input->getArgument('user_id');
-		$helper = $this->getHelper('question');
-		$question = new ConfirmationQuestion('Would-you really reset the user account (y/n) ?', false);
-
-		if($helper->ask($input, $output, $question)) {
-			$this->model->set(['user_id' => $user_id], ['errors' => 0]);
-			$output->writeln("<info>The user account has been unlocked.</info>");
-		}
+		$this->model->set(['user_id' => $user_id], ['errors' => 0]);
+		$output->writeln("<info>The user account has been unlocked.</info>");
 	}
 }
