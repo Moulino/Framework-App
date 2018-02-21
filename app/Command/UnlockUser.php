@@ -21,7 +21,8 @@ class UnlockUser extends Command
 
 	protected function configure() {
 		$this->setName('app:user-unlock')
-			->setDescription('Unlock user account.');
+			->setDescription('Unlock user account.')
+			->addArgument('user_id', InputArgument::OPTIONAL, 'User identifiant');
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output) {
